@@ -38,7 +38,7 @@ int in2 = 7;
 int in3 = 8;
 int in4 = 9;
 int led = 13;
-int corte = 900;
+int corte = 880;
 bool isBlack(int value);
 int trig = 2;
 int echo = 3;
@@ -101,7 +101,7 @@ void setup()
 
 void loop()
 { 
- while(true){
+ 
   distancia = tempo/29.4/2;
   digitalWrite(trig, HIGH);
   delayMicroseconds (10);
@@ -148,9 +148,9 @@ Serial.print("\n\n");
     Serial.print(sensorValues[i]);
     Serial.print('\t');
   }
-  Serial.println(position);
+  //Serial.println(position);
 
-  delay(250);
+  
 
   /*if(position <=2000){
       parar();
@@ -172,15 +172,15 @@ Serial.print("\n\n");
     direita();
     
  
-  }
-  */
-
+  }*/
   
+
+  /*
     if (isWhite(0) && isWhite(1) && isWhite(2) && isBlack(3)&& isBlack(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     frente();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
    
      }
   
@@ -188,65 +188,112 @@ Serial.print("\n\n");
 
     frente();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(500);
      }
      
        if (isWhite(0) && isWhite(1) && isWhite(2) && isBlack(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     frente();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
    
   }
          if (isWhite(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isBlack(7)) {
 
     esquerda();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }
 
     if (isWhite(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isBlack(6) && isWhite(7)) {
 
     esquerda();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }
 
       if (isWhite(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isBlack(5) && isWhite(6) && isWhite(7)) {
 
     esquerda();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }
      if (isBlack(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     direita();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }
         if (isWhite(0) && isBlack(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     direita();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }     
         if (isWhite(0) && isWhite(1) && isBlack(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     direita();
     digitalWrite(led, LOW);
-    delay(1000);
+    delay(100);
          }     
-  }
+  }*/
+  //usando 1, 3, 4, 6
+      if ( isWhite(1) && isBlack(3) && isBlack(4) && isWhite(6)){
+        frente();
+        delay(200);
+      }
+      if ( isBlack(1) && isBlack(3) && isBlack(4) && isWhite(6)){
+        direita();
+        delay(200);
+      }
+      if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(6)){
+        esquerda();
+        delay(200);
+      }
+      if ( isWhite(1) && isWhite(3) && isWhite(4) && isWhite(6)){
+        frente();
+        delay(200);
+      }
+
+     if ( isWhite(1) && isWhite(3) && isWhite(4) && isBlack(6)){
+        esquerda();
+        delay(200);
+      }
+      
+     if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(5)){
+        esquerda();
+        delay(200);
+      }
+     if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(7)){
+        esquerda();
+        delay(200);
+      }
+     if ( isBlack(2) && isBlack(3) && isBlack(4) && isWhite(6)){
+        direita();
+        delay(200);
+      }
+     if ( isBlack(0) && isBlack(3) && isBlack(4) && isWhite(6)){
+        direita();
+        delay(200);
+      }
+     if ( isWhite(1) && isBlack(3) && isWhite(4) && isWhite(6)){
+        frente();
+        delay(200);
 }
+    if ( isWhite(1) && isWhite(3) && isBlack(4) && isWhite(6)){
+        frente();
+        delay(200);
 
-
+}
+    }*/
+    
 void frente() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 75);
+  analogWrite(pwm1, 65);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 75);
+  analogWrite(pwm2, 65);
 }
 void parar() {
   digitalWrite(in1, LOW);
@@ -260,19 +307,19 @@ void parar() {
 void direita() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 75);
+  analogWrite(pwm1, 115);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
-  analogWrite(pwm2, 75);
+  analogWrite(pwm2, 65);
 }
 
 void esquerda() {
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(pwm1, 75);
+  analogWrite(pwm1, 65);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 75);
+  analogWrite(pwm2, 115);
 }
 bool isBlack (int num) {
   int value = sensorValues[num];
