@@ -64,7 +64,7 @@ void setup()
   // 0.1 ms per sensor * 4 samples per sensor read (default) * 6 sensors
   // * 10 reads per calibrate() call = ~24 ms per calibrate() call.
   // Call calibrate() 400 times to make calibration take about 10 seconds.
-  for (uint16_t i = 0; i < 400; i++)
+  for (uint16_t i = 0; i < 200; i++)
   {
     qtr.calibrate();
   }
@@ -109,6 +109,12 @@ void loop()
   delayMicroseconds (10);
   digitalWrite(trig, LOW);
   tempo = pulseIn(echo, HIGH);
+if(distancia <= 6){
+  
+direita2();
+delay(600);
+}
+  
   Serial.print("primeiro sensor ");
   Serial.print(sensorValues[0]);
   Serial.print("\n");
@@ -152,7 +158,7 @@ void loop()
   }
   Serial.println(position);
 
-  
+
 
   if(position <=3500){
       esquerda();
@@ -175,6 +181,7 @@ void loop()
       delay(200);
   
     }
+  
 }
 
   //A0 E A1 E A2 =DIREITA
@@ -309,10 +316,10 @@ void loop()
 void tras(){
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(pwm1, 65);
+  analogWrite(pwm1, 55);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
-  analogWrite(pwm2, 65);
+  analogWrite(pwm2, 55);
 }
 void frente() {
   digitalWrite(in1, LOW);
@@ -334,7 +341,7 @@ void parar() {
 void direita() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 115);
+  analogWrite(pwm1, 110);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
   analogWrite(pwm2, 55);
@@ -346,7 +353,15 @@ void esquerda() {
   analogWrite(pwm1, 55);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 115);
+  analogWrite(pwm2, 110);
+}
+  void direita2() {
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  analogWrite(pwm1, 220);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+  analogWrite(pwm2, 110);
 }
 bool isBlack (int num) {
   int value = sensorValues[num];
