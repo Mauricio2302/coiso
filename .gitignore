@@ -52,7 +52,9 @@ void setup()
   pinMode(led, OUTPUT);
   // configure the sensors
   qtr.setTypeAnalog();
-  qtr.setSensorPins((const uint8_t[]) {A0, A1, A2, A3, A4, A5, A6, A7}, SensorCount);
+  qtr.setSensorPins((const uint8_t[]) {
+    A0, A1, A2, A3, A4, A5, A6, A7
+  }, SensorCount);
 
   delay(500);
   pinMode(LED_BUILTIN, OUTPUT);
@@ -64,7 +66,7 @@ void setup()
   // Call calibrate() 400 times to make calibration take about 10 seconds.
   for (uint16_t i = 0; i < 400; i++)
   {
-  qtr.calibrate();
+    qtr.calibrate();
   }
   digitalWrite(LED_BUILTIN, LOW); // turn off Arduino's LED to indicate we are through with calibration
 
@@ -100,40 +102,40 @@ void setup()
 }
 
 void loop()
-{ 
- 
-  distancia = tempo/29.4/2;
+{
+
+  distancia = tempo / 29.4 / 2;
   digitalWrite(trig, HIGH);
   delayMicroseconds (10);
   digitalWrite(trig, LOW);
   tempo = pulseIn(echo, HIGH);
-Serial.print("primeiro sensor ");
-Serial.print(sensorValues[0]);
-Serial.print("\n");
-Serial.print("segundo sensor ");
-Serial.print(sensorValues[1]);
-Serial.print("\n");
-Serial.print("terceiro sensor ");
-Serial.print(sensorValues[2]);
-Serial.print("\n");
-Serial.print("quarto sensor ");
-Serial.print(sensorValues[3]);
-Serial.print("\n");
-Serial.print("quinto sensor ");
-Serial.print(sensorValues[4]);
-Serial.print("\n");
-Serial.print("sexto sensor ");
-Serial.print(sensorValues[5]);
-Serial.print("\n");
-Serial.print("setimo sensor ");
-Serial.print(sensorValues[6]);
-Serial.print("\n");
-Serial.print("oitavo sensor ");
-Serial.print(sensorValues[7]);
-Serial.print("\n\n");
+  Serial.print("primeiro sensor ");
+  Serial.print(sensorValues[0]);
+  Serial.print("\n");
+  Serial.print("segundo sensor ");
+  Serial.print(sensorValues[1]);
+  Serial.print("\n");
+  Serial.print("terceiro sensor ");
+  Serial.print(sensorValues[2]);
+  Serial.print("\n");
+  Serial.print("quarto sensor ");
+  Serial.print(sensorValues[3]);
+  Serial.print("\n");
+  Serial.print("quinto sensor ");
+  Serial.print(sensorValues[4]);
+  Serial.print("\n");
+  Serial.print("sexto sensor ");
+  Serial.print(sensorValues[5]);
+  Serial.print("\n");
+  Serial.print("setimo sensor ");
+  Serial.print(sensorValues[6]);
+  Serial.print("\n");
+  Serial.print("oitavo sensor ");
+  Serial.print(sensorValues[7]);
+  Serial.print("\n\n");
 
-  
- // isBlack(sensorValues[0] && sensorValues[1] && sensorValues[2] && sensorValues[3] && sensorValues[4] && sensorValues[5] && sensorValues[6] && sensorValues[7]);
+
+  // isBlack(sensorValues[0] && sensorValues[1] && sensorValues[2] && sensorValues[3] && sensorValues[4] && sensorValues[5] && sensorValues[6] && sensorValues[7]);
   //isWhite(sensorValues[0] && sensorValues[1] && sensorValues[2] && sensorValues[3] && sensorValues[4] && sensorValues[5] && sensorValues[6] && sensorValues[7]);
   //Serial.println(isBlack(0));
   // read calibrated sensor values and obtain a measure of the line position
@@ -148,16 +150,32 @@ Serial.print("\n\n");
     Serial.print(sensorValues[i]);
     Serial.print('\t');
   }
-  //Serial.println(position);
+  Serial.println(position);
 
   
 
-  /*if(position <=2000){
-      parar();
+  if(position <=3500){
+      esquerda();
+      delay(50);
+  
+      
     }
-    if(position >=2000){
+    if(position >=3500){
+      direita();
+      delay(50);
+  
+    }
+   
+   if(position <3500 &&  position >3000){
       frente();
-    }*/
+      delay(200);
+    }
+  if(position >=6300){
+      tras();
+      delay(200);
+  
+    }
+}
 
   //A0 E A1 E A2 =DIREITA
   //A3 E A4 = MEIO
@@ -165,15 +183,15 @@ Serial.print("\n\n");
   /*if (sensorValues[0] <= corte && sensorValues[1] <= corte && sensorValues[2] <= corte && sensorValues[3] >= corte && sensorValues[4] >= corte && sensorValues[5] >= corte && sensorValues[6] >= corte && sensorValues[7] >= corte) {
 
     esquerda();
- 
-  }
-  if (sensorValues[0] >= corte && sensorValues[1] >= corte && sensorValues[2] >= corte && sensorValues[3] >= corte && sensorValues[4] >= corte && sensorValues[5] <= corte && sensorValues[6] <= corte && sensorValues[7] <= corte) {
+
+    }
+    if (sensorValues[0] >= corte && sensorValues[1] >= corte && sensorValues[2] >= corte && sensorValues[3] >= corte && sensorValues[4] >= corte && sensorValues[5] <= corte && sensorValues[6] <= corte && sensorValues[7] <= corte) {
 
     direita();
-    
- 
-  }*/
-  
+
+
+    }*/
+
 
   /*
     if (isWhite(0) && isWhite(1) && isWhite(2) && isBlack(3)&& isBlack(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
@@ -181,23 +199,23 @@ Serial.print("\n\n");
     frente();
     digitalWrite(led, LOW);
     delay(100);
-   
+
      }
-  
+
      if (isWhite(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isBlack(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     frente();
     digitalWrite(led, LOW);
     delay(500);
      }
-     
+
        if (isWhite(0) && isWhite(1) && isWhite(2) && isBlack(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     frente();
     digitalWrite(led, LOW);
     delay(100);
-   
-  }
+
+    }
          if (isWhite(0) && isWhite(1) && isWhite(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isBlack(7)) {
 
     esquerda();
@@ -229,71 +247,80 @@ Serial.print("\n\n");
     direita();
     digitalWrite(led, LOW);
     delay(100);
-         }     
+         }
         if (isWhite(0) && isWhite(1) && isBlack(2) && isWhite(3)&& isWhite(4) && isWhite(5) && isWhite(6) && isWhite(7)) {
 
     direita();
     digitalWrite(led, LOW);
     delay(100);
-         }     
-  }*/
-  //usando 1, 3, 4, 6
-      if ( isWhite(1) && isBlack(3) && isBlack(4) && isWhite(6)){
-        frente();
-        delay(200);
-      }
-      if ( isBlack(1) && isBlack(3) && isBlack(4) && isWhite(6)){
-        direita();
-        delay(200);
-      }
-      if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(6)){
-        esquerda();
-        delay(200);
-      }
-      if ( isWhite(1) && isWhite(3) && isWhite(4) && isWhite(6)){
-        frente();
-        delay(200);
-      }
-
-     if ( isWhite(1) && isWhite(3) && isWhite(4) && isBlack(6)){
-        esquerda();
-        delay(200);
-      }
-      
-     if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(5)){
-        esquerda();
-        delay(200);
-      }
-     if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(7)){
-        esquerda();
-        delay(200);
-      }
-     if ( isBlack(2) && isBlack(3) && isBlack(4) && isWhite(6)){
-        direita();
-        delay(200);
-      }
-     if ( isBlack(0) && isBlack(3) && isBlack(4) && isWhite(6)){
-        direita();
-        delay(200);
-      }
-     if ( isWhite(1) && isBlack(3) && isWhite(4) && isWhite(6)){
-        frente();
-        delay(200);
-}
-    if ( isWhite(1) && isWhite(3) && isBlack(4) && isWhite(6)){
-        frente();
-        delay(200);
-
-}
+         }
     }*/
-    
+  //usando 1, 3, 4, 6
+  /*
+  if ( isWhite(1) && isBlack(3) && isBlack(4) && isWhite(6)) {
+    frente();
+    delay(200);
+  }
+  if ( isBlack(1) && isBlack(3) && isBlack(4) && isWhite(6)) {
+    direita();
+    delay(200);
+  }
+  if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(6)) {
+    esquerda();
+    delay(200);
+  }
+  if ( isWhite(1) && isWhite(3) && isWhite(4) && isWhite(6)) {
+    frente();
+    delay(200);
+  }
+
+  if ( isWhite(1) && isWhite(3) && isWhite(4) && isBlack(6)) {
+    esquerda();
+    delay(200);
+  }
+
+  if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(5)) {
+    esquerda();
+    delay(200);
+  }
+  if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(7)) {
+    esquerda();
+    delay(200);
+  }
+  if ( isBlack(2) && isBlack(3) && isBlack(4) && isWhite(6)) {
+    direita();
+    delay(200);
+  }
+  if ( isBlack(0) && isBlack(3) && isBlack(4) && isWhite(6)) {
+    direita();
+    delay(200);
+  }
+  if ( isWhite(1) && isBlack(3) && isWhite(4) && isWhite(6)) {
+    frente();
+    delay(200);
+  }
+  if ( isWhite(1) && isWhite(3) && isBlack(4) && isWhite(6)) {
+    frente();
+    delay(200);
+
+  }*/
+
+
+void tras(){
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  analogWrite(pwm1, 65);
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+  analogWrite(pwm2, 65);
+}
 void frente() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 65);
+  analogWrite(pwm1, 55);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 65);
+  analogWrite(pwm2, 55);
 }
 void parar() {
   digitalWrite(in1, LOW);
@@ -310,32 +337,32 @@ void direita() {
   analogWrite(pwm1, 115);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
-  analogWrite(pwm2, 65);
+  analogWrite(pwm2, 55);
 }
 
 void esquerda() {
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(pwm1, 65);
+  analogWrite(pwm1, 55);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
   analogWrite(pwm2, 115);
 }
 bool isBlack (int num) {
   int value = sensorValues[num];
-if (value < corte){
-  return false;
-}else{ 
-  return true;
-}
+  if (value < corte) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 bool isWhite (int num) {
   int value = sensorValues[num];
-if (value > corte){
-  return true;
-  
-}else{
-  return false;
-}
+  if (value > corte) {
+    return true;
+
+  } else {
+    return false;
+  }
 }
