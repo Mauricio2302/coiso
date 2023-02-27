@@ -1,3 +1,4 @@
+
 #include <QTRSensors.h>
 
 // This example is designed for use with six analog QTR sensors. These
@@ -109,12 +110,29 @@ void loop()
   delayMicroseconds (10);
   digitalWrite(trig, LOW);
   tempo = pulseIn(echo, HIGH);
-if(distancia <= 6){
+  Serial.println(distancia);
+if(distancia <= 5){
   
-direita2();
-delay(600);
+esquerda();
+delay(200);
+frente();
+delay(300);
+direita();
+delay(200);
+frente();
+delay(300);
+direita();
+delay(200);
+frente();
+delay(300);
+esquerda();
+delay(200);
+frente();
+delay(300);
+
+
 }
-  
+ /* 
   Serial.print("primeiro sensor ");
   Serial.print(sensorValues[0]);
   Serial.print("\n");
@@ -139,7 +157,7 @@ delay(600);
   Serial.print("oitavo sensor ");
   Serial.print(sensorValues[7]);
   Serial.print("\n\n");
-
+*/
 
   // isBlack(sensorValues[0] && sensorValues[1] && sensorValues[2] && sensorValues[3] && sensorValues[4] && sensorValues[5] && sensorValues[6] && sensorValues[7]);
   //isWhite(sensorValues[0] && sensorValues[1] && sensorValues[2] && sensorValues[3] && sensorValues[4] && sensorValues[5] && sensorValues[6] && sensorValues[7]);
@@ -160,7 +178,7 @@ delay(600);
 
 
 
-  if(position <=3500){
+  if (position <=2500){
       esquerda();
       delay(50);
   
@@ -174,7 +192,7 @@ delay(600);
    
    if(position <3500 &&  position >3000){
       frente();
-      delay(200);
+      delay(100);
     }
   if(position >=6300){
       tras();
@@ -288,6 +306,7 @@ delay(600);
 
   if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(5)) {
     esquerda();
+    
     delay(200);
   }
   if ( isWhite(1) && isBlack(3) && isBlack(4) && isBlack(7)) {
@@ -324,10 +343,10 @@ void tras(){
 void frente() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 55);
+  analogWrite(pwm1, 50);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 55);
+  analogWrite(pwm2, 50);
 }
 void parar() {
   digitalWrite(in1, LOW);
@@ -341,7 +360,7 @@ void parar() {
 void direita() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(pwm1, 110);
+  analogWrite(pwm1, 90);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
   analogWrite(pwm2, 55);
@@ -353,7 +372,7 @@ void esquerda() {
   analogWrite(pwm1, 55);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(pwm2, 110);
+  analogWrite(pwm2, 90);
 }
   void direita2() {
   digitalWrite(in1, LOW);
