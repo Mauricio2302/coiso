@@ -111,27 +111,7 @@ void loop()
   digitalWrite(trig, LOW);
   tempo = pulseIn(echo, HIGH);
   Serial.println(distancia);
-if(distancia <= 5){
-  
-esquerda();
-delay(200);
-frente();
-delay(300);
-direita();
-delay(200);
-frente();
-delay(300);
-direita();
-delay(200);
-frente();
-delay(300);
-esquerda();
-delay(200);
-frente();
-delay(300);
 
-
-}
  /* 
   Serial.print("primeiro sensor ");
   Serial.print(sensorValues[0]);
@@ -176,17 +156,49 @@ delay(300);
   }
   Serial.println(position);
 
+if(distancia <= 5 && distancia >= 3){
+tras();
+delay(800);  
+esquerda();
+delay(1300);
+frente();
+delay(1000);
+direita();
+delay(1700);
+frente();
+delay(1000);
+direita();
+delay(1700);
+frente();
+delay(1000);
 
 
-  if (position <=2500){
+}
+
+// verde = 300 a 600
+
+  if (position <=2000){
       esquerda();
       delay(50);
   
       
     }
-    if(position >=3500){
+
+ if (position <=2800 && position >= 2300){
+      esquerda();
+      delay(200);
+  
+      
+    }
+  
+    if(position >=3500 && position <=3800){
       direita();
       delay(50);
+  
+    }
+      if(position >=3900 && position <=4100){
+      direita();
+      delay(20/l0);
   
     }
    
@@ -199,7 +211,6 @@ delay(300);
       delay(200);
   
     }
-  
 }
 
   //A0 E A1 E A2 =DIREITA
